@@ -1,2 +1,10 @@
 build/
 .gradle/
+.classpath
+.project
+Kotlin.iml
+.idea/
+.settings/
+lib/
+meine.db
+test.db
