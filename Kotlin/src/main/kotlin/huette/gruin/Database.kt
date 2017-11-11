@@ -84,7 +84,7 @@ class Database(val filename: String) {
             Class.forName("org.sqlite.JDBC")
             c = DriverManager.getConnection("jdbc:sqlite:$filename")
             c!!.autoCommit = false
-            println("Opened database successfully")
+            //println("Opened database successfully")
 
             stmt = c.createStatement()
             val rs = stmt!!.executeQuery("SELECT * FROM Messages ORDER BY timestamp DESC;")

@@ -8,3 +8,5 @@ Kotlin.iml
 lib/
 meine.db
 test.db
+.vscode/
+bin/

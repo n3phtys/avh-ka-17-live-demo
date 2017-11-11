@@ -7,14 +7,15 @@ val htmlForMessenger: String = "<!DOCTYPE html>\n" +
         "<head>\n" +
         "    <meta charset=\"utf-8\">\n" +
         "    <title>Unser erstes HTML Dokument</title>\n" +
-        "    <link rel=\"stylesheet\" href=\"style.css\">\n" +
+        "    <!--link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css\" integrity=\"sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb\" crossorigin=\"anonymous\"-->\n" +
+        "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\" integrity=\"sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u\" crossorigin=\"anonymous\">" +
         "  <script src=\"http://code.jquery.com/jquery-1.9.1.js\"></script>\n" +
         "</head>\n" +
         "\n" +
         "<body>\n" +
         "    <!-- page content -->\n" +
-        "\n" +
-        "    <h1>Hütten Chat</h1>\n" +
+        " <div class=\"container\"> \n" +
+        "    <h1>Hüttenchat</h1>\n" +
         "    \n" +
         "\n" +
         "\n" +
@@ -54,17 +55,20 @@ val htmlForMessenger: String = "<!DOCTYPE html>\n" +
         "\n" +
         "\n" +
         "        setInterval(function () {\n" +
-        "            console.log(\"A tick happens\");\n" +
         "            refreshViaAjax();\n" +
-        "        }, 2000);\n" +
+        "        }, 1000);\n" +
+        " window.onload = refreshViaAjax;" +
         "    </script>\n" +
         "\n" +
         "\n" +
-        "    <form id=\"my_form\" action=\"/messages\">\n" +
-        "  Nachricht:<br>\n" +
-        "  <input type=\"text\" required id=\"message\" name=\"message\" value=\"\" placeholder=\"Deine Nachricht für den Chat\">\n" +
-        "  <br>\n" +
-        "  <input type=\"submit\" value=\"Absender\">\n" +
+        "    <form id=\"my_form\" action=\"/messages\" class=\"\">\n" +
+        " <div class=\"form-group\">\n" +
+        "    <label for=\"email\">Nachricht:</label>\n" +
+        "    <input type=\"text\" class=\"form-control\" id=\"message\" name=\"message\" value=\"\"\n" +
+        "    required\n" +
+        "    placeholder=\"Deine Nachricht für den Chat\" >\n" +
+        "  </div> \n" +
+        "  <input type=\"submit\" class=\"btn btn-default\" value=\"Senden\">\n" +
         "</form> \n" +
         "\n" +
         "<script type='text/javascript'>\n" +
@@ -75,8 +79,8 @@ val htmlForMessenger: String = "<!DOCTYPE html>\n" +
         "      event.preventDefault();\n" +
         "\n" +
         "      /* get the action attribute from the <form action=\"\"> element */\n" +
-        "      var $"+"form = \$( this ),\n" +
-        "          url = $"+"form.attr( 'action' );\n" +
+        "      var $" + "form = \$( this ),\n" +
+        "          url = $" + "form.attr( 'action' );\n" +
         "\n" +
         "      /* Send the data using post with element id name and name2*/\n" +
         "      var posting = \$.post( url, { message: \$('#message').val() } );\n" +
@@ -85,57 +89,19 @@ val htmlForMessenger: String = "<!DOCTYPE html>\n" +
         "\n" +
         "      /* Alerts the results */\n" +
         "      posting.done(function( data ) {\n" +
-        "        \n" +
+        "       refreshViaAjax(); \n" +
         "      });\n" +
         "    });\n" +
         "</script>\n" +
 
-        "    <table id=\"my_table\"></table>\n" +
+        "  <div class=\"table-responsive\">" +
+        "  <table id=\"my_table\" class=\"table\"></table>\n" +
         "\n" +
-        "\n" +
+        "</div></div>\n" +
         "</body>\n" +
         "\n" +
         "</html>" //TODO: implement
 
-
-
-
-val ajaxScript: String = "" //TODO: implement querying server every X seconds
-
-val ajaxEmptyTableTag: String = "" //TODO: implement 
-
-val ajaxCombination: String = "$ajaxEmptyTableTag <script>$ajaxScript</script>"
-
-val ajaxSendFormular: String = "" //TODO: implement
-
-val jqueryInclude: String = "<script\n" +
-        "  src=\"https://code.jquery.com/jquery-3.2.1.js\"\n" +
-        "  integrity=\"sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=\"\n" +
-        "  crossorigin=\"anonymous\"></script>\n"
-
-val ajaxForFormJS: String = "jQuery(document).ready(function(\$)\n" +
-        "{\n" +
-        "\t\$(\"#my_form\").submit(function(event) {\n" +
-        "\t\t// Standard-Aktion abbrechen\n" +
-        "\t\tevent.preventDefault();\t\n" +
-        "\n" +
-        "\t\t// Formular per AJAX senden\n" +
-        "\t\tvar form=\$(this);\n" +
-        "\t\t\$.ajax({\n" +
-        "\t\t\ttype: 'POST',\n" +
-        "\t\t\turl: form.prop('action'),\n" +
-        "\t\t\tdata : form.serialize(),\n" +
-        "\t\t\tdataType: 'json',\n" +
-        "\t\t\tencode: true\n" +
-        "\t\t}).done(function(data) {\n" +
-        "\t\t\t// Aktionen bei Erfolg\n" +
-        "\t\t\tconsole.log('done: '+data);\n" +
-        "\t\t}).fail(function(data) {\n" +
-        "\t\t\t// Aktionen bei einem Fehler\n" +
-        "\t\t\tconsole.log('fail: '+data);\t\t\t\n" +
-        "\t\t});\n" +
-        "\t});\n" +
-        "});"
 
 val endpoint = "/messages"
 
