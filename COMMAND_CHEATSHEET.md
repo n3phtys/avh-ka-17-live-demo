@@ -19,6 +19,14 @@ sqlite3
 
 .read myfile.sql
 
+CREATE TABLE huettens(vorname VARCHAR(30), nachname VARCHAR(30));
+
+INSERT INTO huettens VALUES('gruin', 'kaag');
+
+INSERT INTO huettens VALUES('doofie', 'malcher');
+
+SELECT * FROM huettens;
+
 
 ## Rust
 
