@@ -10,3 +10,4 @@ meine.db
 test.db
 .vscode/
 bin/
+out/
